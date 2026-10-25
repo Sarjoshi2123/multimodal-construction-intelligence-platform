@@ -143,8 +143,12 @@ def make_demo_crack():
 with st.sidebar:
     st.markdown("## 🏗️ Construction Intelligence")
     st.caption("Skill Wallet Capstone · Project 1")
-    api_key = st.text_input("Google Gemini API key", type="password", help="Used only for requests from this app session. Do not commit API keys to GitHub.")
-    if api_key:
+    api_key = st.text_input(
+    "Google Gemini API key",
+    value=st.secrets.get("GEMINI_API_KEY", ""),
+    type="password",
+    help="Stored securely in Streamlit Secrets."
+)
         st.success("API key entered for this session")
     else:
         st.info("Demo mode is available without an API key.")
