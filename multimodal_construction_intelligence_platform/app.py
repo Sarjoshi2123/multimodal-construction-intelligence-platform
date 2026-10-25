@@ -143,15 +143,19 @@ def make_demo_crack():
 with st.sidebar:
     st.markdown("## 🏗️ Construction Intelligence")
     st.caption("Skill Wallet Capstone · Project 1")
+
     api_key = st.text_input(
-    "Google Gemini API key",
-    value=st.secrets.get("GEMINI_API_KEY", ""),
-    type="password",
-    help="Stored securely in Streamlit Secrets."
-)
+        "Google Gemini API key",
+        value=st.secrets.get("GEMINI_API_KEY", "") if "GEMINI_API_KEY" in st.secrets else "",
+        type="password",
+        help="Stored securely in Streamlit Secrets."
+    )
+
+    if api_key:
         st.success("API key entered for this session")
     else:
         st.info("Demo mode is available without an API key.")
+
     st.divider()
     st.markdown("### Architecture overview")
     st.markdown("""
@@ -162,10 +166,20 @@ with st.sidebar:
     - Images processed in-memory
     - Demo fixtures for offline preview
     """)
+
     st.divider()
     st.markdown("### Feature navigation")
-    st.markdown("1. Site Safety & PPE Audit\n2. Crack Diagnostics\n3. Planning & Valuation\n4. Site Assistant")
-    st.caption("For decision support only. Not a substitute for a competent safety officer, licensed structural engineer, quantity surveyor, or local authority.")
+    st.markdown(
+        "1. Site Safety & PPE Audit\n"
+        "2. Crack Diagnostics\n"
+        "3. Planning & Valuation\n"
+        "4. Site Assistant"
+    )
+    st.caption(
+        "For decision support only. Not a substitute for a competent "
+        "safety officer, licensed structural engineer, quantity surveyor, "
+        "or local authority."
+    )
 
 # ---------------------------- Header ------------------------------------------
 st.markdown(f"""
